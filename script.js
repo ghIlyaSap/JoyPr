@@ -13,8 +13,10 @@ const overlays = {
   feedback: document.getElementById('overlay-feedback'),
 };
 
+const storedDisplayName = localStorage.getItem('displayName');
+
 const state = {
-  displayName: null,
+  displayName: storedDisplayName || null,
   selectedWeekId: null,
   currentPillar: null,
   currentType: null,
@@ -356,11 +358,13 @@ function setupWelcomeForm() {
     const name = state.displayName || input.value.trim();
     if (!name) return;
     state.displayName = name;
+    localStorage.setItem('displayName', name);
     renderDashboard();
     showScreen('weeks');
   });
   secondary.addEventListener('click', () => {
     state.displayName = null;
+    localStorage.removeItem('displayName');
     input.value = '';
     renderWelcome();
   });
