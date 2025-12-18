@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Joyful Weeks</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="app">
+    <!-- Screen 1a / 1b: Welcome -->
+    <section id="screen-welcome" class="screen gradient-bg">
+      <header class="top-actions">
+        <button class="icon-btn" aria-label="Help">?</button>
+      </header>
+      <div class="welcome-content">
+        <div class="welcome-text">
+          <p class="eyebrow">Welcome</p>
+          <h1 id="welcome-title">Welcome!</h1>
+          <p id="welcome-subtitle" class="subtitle">Plan joyful weeks and gently track what makes you feel better.</p>
+        </div>
+        <div class="welcome-form" id="welcome-form">
+          <label for="display-name">What should we call you?</label>
+          <input id="display-name" name="display-name" type="text" maxlength="30" placeholder="Your name" />
+        </div>
+        <div class="welcome-actions">
+          <button id="welcome-primary" class="btn primary" disabled>Continue</button>
+          <button id="welcome-secondary" class="link-btn">This isn't me</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Screen 2: Week selection -->
+    <section id="screen-weeks" class="screen gradient-bg hidden">
+      <header class="top-actions">
+        <button class="icon-btn" aria-label="Back" data-nav="welcome">←</button>
+        <button class="icon-btn" aria-label="Help">?</button>
+      </header>
+      <div class="screen-heading">
+        <p class="eyebrow">Weeks</p>
+        <h1>Select your week</h1>
+        <p class="subtitle">Pick a week to plan or review joyful activities.</p>
+      </div>
+      <div class="weeks-list" id="weeks-list"></div>
+    </section>
+
+    <!-- Screen 3: Weekly dashboard -->
+    <section id="screen-dashboard" class="screen hidden">
+      <header class="dash-header">
+        <div>
+          <p class="eyebrow" id="dashboard-week-label">This week</p>
+          <h1 id="dashboard-title">Week March 10–16</h1>
+          <p class="subtitle">Track your joyful activities and weekly points.</p>
+        </div>
+        <button class="text-btn" id="week-picker">Pick another week</button>
+      </header>
+      <div class="progress-card">
+        <div class="progress-chart" aria-label="Weekly progress">
+          <div class="progress-circle">
+            <div class="progress-inner" id="progress-circle"></div>
+            <div class="progress-count">
+              <span class="count" id="completed-points">0</span>
+              <span class="label">pts</span>
+            </div>
+          </div>
+          <div class="progress-legend">
+            <div class="legend-item"><span class="dot goal"></span>Recommended: <strong id="goal-points">28</strong></div>
+            <div class="legend-item"><span class="dot assigned"></span>Assigned: <strong id="assigned-points">0</strong></div>
+            <div class="legend-item"><span class="dot completed"></span>Completed: <strong id="completed-points-text">0</strong></div>
+          </div>
+        </div>
+        <div class="message" id="state-message">This week is still empty. Want to add a few ideas for movement, nature or creativity?</div>
+        <div class="actions">
+          <button class="btn primary" id="cta-discover">Find activities for this week</button>
+          <button class="btn secondary" id="cta-list">My list for this week</button>
+          <button class="link-btn" id="cta-points">What are 28 points?</button>
+        </div>
+      </div>
+      <nav class="bottom-bar">
+        <button class="bottom-btn" id="nav-discover">
+          <span class="icon">⭐</span>
+          <span>Discover</span>
+        </button>
+        <button class="bottom-btn" id="nav-mylist">
+          <span class="icon">📋</span>
+          <span>My list</span>
+        </button>
+      </nav>
+    </section>
+
+    <!-- Screen 4-1-0: Pillar selection -->
+    <section id="screen-pillars" class="screen hidden">
+      <header class="top-actions">
+        <button class="icon-btn" aria-label="Back" data-nav="dashboard">←</button>
+        <div class="week-chip" id="pillars-week"></div>
+      </header>
+      <div class="screen-heading">
+        <p class="eyebrow">Start with</p>
+        <h1>Where would you like to start?</h1>
+        <p class="subtitle">Pick a focus area to see activities for this week.</p>
+      </div>
+      <div class="pillars-grid" id="pillars-grid"></div>
+      <div class="inline-progress" id="pillars-progress"></div>
+    </section>
+
+    <!-- Screen 4-1-1: Activity type selection -->
+    <section id="screen-types" class="screen hidden">
+      <header class="top-actions">
+        <button class="icon-btn" aria-label="Back" data-nav="pillars">←</button>
+        <div class="week-chip" id="types-week"></div>
+      </header>
+      <div class="screen-heading">
+        <p class="eyebrow">What suits you best?</p>
+        <h1>Select an activity type</h1>
+        <p class="subtitle">Options depend on what is available for your chosen area.</p>
+      </div>
+      <div class="type-chips" id="type-chips"></div>
+      <div class="inline-progress" id="types-progress"></div>
+    </section>
+
+    <!-- Screen 4-1-2: Activity list -->
+    <section id="screen-activities" class="screen hidden">
+      <header class="top-actions">
+        <button class="icon-btn" aria-label="Back" data-nav="types">←</button>
+        <div class="week-chip" id="activities-week"></div>
+      </header>
+      <div class="screen-heading">
+        <p class="eyebrow" id="activities-area">Movement</p>
+        <h1 id="activities-title">Pick an activity</h1>
+        <p class="subtitle">Add items to your week or mark them as done.</p>
+      </div>
+      <div class="inline-progress" id="activities-progress"></div>
+      <div class="card-list" id="activity-cards"></div>
+    </section>
+
+    <!-- Screen 4-2-0: My list -->
+    <section id="screen-mylist" class="screen hidden">
+      <header class="top-actions">
+        <button class="icon-btn" aria-label="Back" data-nav="dashboard">←</button>
+        <div class="week-chip" id="mylist-week"></div>
+      </header>
+      <div class="screen-heading">
+        <p class="eyebrow">My week</p>
+        <h1 id="mylist-title">Week overview</h1>
+        <p class="subtitle">Assigned and completed activities for this week.</p>
+      </div>
+      <div class="inline-progress" id="mylist-progress"></div>
+      <div class="list-section">
+        <h2>Assigned (not yet completed)</h2>
+        <div class="card-list" id="mylist-assigned"></div>
+      </div>
+      <div class="list-section">
+        <h2>Completed</h2>
+        <div class="card-list" id="mylist-completed"></div>
+      </div>
+      <div class="actions">
+        <button class="btn primary" data-nav="pillars">Add more activities</button>
+        <button class="btn secondary" data-nav="dashboard">Back to this week</button>
+      </div>
+    </section>
+
+    <!-- Overlay: What are points -->
+    <div id="overlay-points" class="overlay hidden" role="dialog" aria-modal="true">
+      <div class="modal">
+        <div class="modal-header">
+          <h2>What are 28 points?</h2>
+          <button class="icon-btn" data-close="overlay-points">✕</button>
+        </div>
+        <p>The recommended weekly goal is 28 points. Each activity adds points based on its impact. Assigned points show what you plan, completed points show what you did.</p>
+        <button class="btn primary" data-close="overlay-points">Got it</button>
+      </div>
+    </div>
+
+    <!-- Overlay: Feedback form -->
+    <div id="overlay-feedback" class="overlay hidden" role="dialog" aria-modal="true">
+      <div class="modal">
+        <div class="modal-header">
+          <h2>Share quick feedback</h2>
+          <button class="icon-btn" data-close="overlay-feedback">✕</button>
+        </div>
+        <p>Leave a short note about what you did and how it went.</p>
+        <textarea id="feedback-text" rows="3" placeholder="Type at least one character"></textarea>
+        <div class="modal-actions">
+          <button class="btn secondary" data-close="overlay-feedback">Cancel</button>
+          <button class="btn primary" id="feedback-submit">Save feedback</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
