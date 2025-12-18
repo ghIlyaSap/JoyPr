@@ -1,0 +1,300 @@
+Context
+
+You are working with a mobile-first web application.
+
+The goal of this task is to implement the UI layer (HTML, CSS, minimal JavaScript) based on the provided specification and screen designs.
+
+This is NOT backend work and NOT database implementation yet.
+Focus on structure, layout, states, and interaction behavior.
+
+Provided materials
+
+You are given three types of files:
+
+1) Word documents (English only)
+
+A. Functional specification
+
+File: User_M_Specification_en_unified.docx
+
+Contains:
+
+product purpose,
+
+UX logic,
+
+screen descriptions,
+
+state logic (points, assigned / completed),
+
+behavioral rules.
+
+B. Screen map & screen descriptions
+
+File: screen_map_and_description_Engl.docx
+
+Contains:
+
+explicit screen-to-screen navigation map,
+
+detailed per-screen descriptions,
+
+UI elements,
+
+behavior,
+
+navigation,
+
+additional notes on data dynamics.
+
+👉 These two documents are the single source of truth.
+If something is not described there — do not invent it.
+
+2) Screen designs (visual layouts)
+
+You are given:
+
+PNG files (final visual layout reference),
+
+SVG files (vector reference),
+
+additional PNG files for complex visuals (e.g. charts).
+
+Important clarification:
+
+These images are NOT just inspiration.
+
+They are visual layout specifications:
+
+spacing,
+
+hierarchy,
+
+element placement,
+
+proportions,
+
+mobile vertical orientation.
+
+However:
+
+Text, numbers, names, dates, and values in images may be placeholders.
+
+Real values will be injected dynamically later.
+
+👉 Treat images as UI layout to be implemented,
+👉 Treat text inside images as illustrative placeholders unless specified otherwise.
+
+Target platform & scope
+Platform
+
+Mobile-first web app
+
+Primary layout: mobile, portrait orientation
+
+Implementation: HTML + CSS + minimal JavaScript
+
+Out of scope (for now)
+
+Database implementation
+
+API integration
+
+Authentication
+
+Persistent storage
+
+Responsive layouts for tablet / desktop (can be prepared structurally, but not finalized)
+
+What to implement
+1) HTML structure
+
+Semantic HTML for all screens.
+
+One logical container per screen.
+
+Clear separation of:
+
+headers,
+
+content areas,
+
+action areas,
+
+overlays / modals.
+
+2) CSS
+
+Mobile-first styles.
+
+Match spacing, alignment, and visual hierarchy from designs.
+
+Implement:
+
+default state,
+
+hover / press / active states (for mouse and touch),
+
+disabled states where described.
+
+Colors, gradients, rounded cards, buttons — follow designs closely.
+
+3) JavaScript (lightweight)
+
+JavaScript is used only for:
+
+screen switching,
+
+state toggling,
+
+UI reactions.
+
+At this stage:
+
+Do NOT implement real data loading.
+
+Do NOT connect to a real database.
+
+Instead:
+
+Use mock data objects or placeholders.
+
+Clearly separate logic so that:
+
+data sources can later be swapped (DB vs in-memory).
+
+Data handling model (IMPORTANT)
+
+The UI uses three kinds of data:
+
+1) Static UI text
+
+Examples:
+
+button labels,
+
+section titles,
+
+helper texts.
+
+These:
+
+are fixed strings,
+
+may change only when designers update copy,
+
+are NOT fetched from the database.
+
+2) State-dependent UI data
+
+Examples:
+
+which buttons are visible,
+
+which actions are enabled,
+
+which screen variant is shown,
+
+Assigned vs Completed states,
+
+empty / partial / completed week logic.
+
+These:
+
+depend on application state,
+
+should be controlled via JS state variables,
+
+must be easy to adjust later.
+
+3) Dynamic content data (future DB data)
+
+Examples:
+
+activity cards,
+
+week ranges,
+
+points,
+
+pillar lists,
+
+activity metadata.
+
+For now:
+
+represent them as mock objects / arrays.
+
+clearly mark places where real data will be injected later.
+
+👉 The code structure should make it obvious where dynamic data will come from, even if it is mocked now.
+
+Navigation rules
+
+Follow the screen map exactly as defined in screen_map_and_description_Engl.docx.
+
+Screen transitions must match the map.
+
+Cycles (returning to previous screens) must be preserved.
+
+Overlays (info / feedback dialogs) are not standalone pages.
+
+Screens to implement (order recommended)
+
+Screen_1a / Screen_1b — Welcome
+
+Screen_2 — Week selection
+
+Screen_3 — Weekly Dashboard
+
+Screen_4-1_0 — Pillar selection
+
+Screen_4-1_1 — Activity type selection
+
+Screen_4-1_2 — Activity list
+
+Screen_4-2_0 — My list
+
+Screen_4-2_inf_1 — Activity info / feedback overlay
+
+Charts & complex visuals
+
+Charts are UI components, not images.
+
+Use the provided PNG/SVG as visual reference.
+
+Implement charts structurally (HTML/CSS or simple JS), not as static images.
+
+Data values are dynamic; appearance is fixed by design.
+
+Output expectations
+
+Produce:
+
+clean, readable HTML,
+
+modular CSS,
+
+minimal, well-structured JavaScript,
+
+clear comments explaining:
+
+where state changes,
+
+where data is injected,
+
+where future DB integration will occur.
+
+Avoid:
+
+over-engineering,
+
+unnecessary frameworks,
+
+assumptions not present in the documents.
+
+Final instruction
+
+Implement exactly what is described.
+Do not invent new screens, flows, or logic.
+If something is ambiguous, prefer the Word specification over visual guesswork.
