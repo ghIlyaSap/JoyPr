@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Joyful Weeks – Welcome</title>
+  <link rel="stylesheet" href="welcome.css">
+</head>
+<body>
+  <main class="landing">
+    <div class="landing__glow landing__glow--one"></div>
+    <div class="landing__glow landing__glow--two"></div>
+    <header class="landing__header">
+      <div class="logo-mark" aria-hidden="true">JW</div>
+      <button class="icon-btn" aria-label="Help">?</button>
+    </header>
+
+    <section class="landing__hero">
+      <div class="hero__copy">
+        <p class="eyebrow">Welcome</p>
+        <h1 id="hero-title">Welcome back</h1>
+        <p id="hero-body" class="subtitle">We saved your joyful week planner. Continue where you left off or update your name.</p>
+      </div>
+      <div class="hero__visual" aria-hidden="true">
+        <div class="phone-frame">
+          <div class="phone-notch"></div>
+          <div class="phone-screen">
+            <div class="phone-chart"></div>
+            <div class="phone-badge">28 pts</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="landing__card" aria-labelledby="cta-title">
+      <div class="card__content">
+        <div class="card__header">
+          <div class="avatar" aria-hidden="true">😊</div>
+          <div>
+            <p class="eyebrow" id="cta-title">Signed in as</p>
+            <p id="cta-name" class="card__name">Your name</p>
+          </div>
+        </div>
+        <div class="card__form" id="name-form">
+          <label class="card__label" for="display-name">Prefer a different name?</label>
+          <div class="input-row">
+            <input id="display-name" name="display-name" type="text" placeholder="Enter your name" maxlength="30" autocomplete="name">
+            <button class="text-btn" id="clear-name" type="button">Clear</button>
+          </div>
+        </div>
+      </div>
+      <div class="card__actions">
+        <button class="btn primary" id="continue-btn" disabled>Continue</button>
+        <button class="link-btn" id="switch-mode" type="button">This isn't me</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="welcome.js"></script>
+</body>
+</html>
